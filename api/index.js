@@ -27,7 +27,7 @@ app.use(cookieParser());
 
 app.use(cors({
     credentials:true,
-    origin:"https://airbnb-clinet.onrender.com/"
+    origin:'https://airbnb-clinet.onrender.com',
 }));
 
 console.log(process.env.MONGO_URL)

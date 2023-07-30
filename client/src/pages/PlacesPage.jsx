@@ -1,6 +1,6 @@
 
 import { Link, useParams } from "react-router-dom";
-import AccountNav from "../../AccountNav";
+import AccountNav from "./AccountNav";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -34,7 +34,7 @@ export default  function PlacesPage() {
                 <Link key={place._id} to={'/account/places/'+place._id} className="bg-gray-200 flex cursor-pointer  gap-4 p-2 rounded-xl">
                 <div key={place._id} className="w-32 h-32 bg-gray-300 flex shrink-0">
                 {place.photos.length>0 &&( 
-                    <img key={place._id}   className="object-cover " src={"http://localhost:4000/uploads/"+place.photos[0]}  alt="" />
+                    <img key={place._id}   className="object-cover " src={"https://airbnb-v20y.onrender.com/uploads/"+place.photos[0]}  alt="" />
                 )}
                 </div>
                 <div className="grow-0 shrink">

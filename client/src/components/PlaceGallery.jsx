@@ -17,7 +17,7 @@ export default function PlaceGallery({place}){
           </div>
           {place.photos?.length >0 && place.photos.map(photo =>(
               <div>
-              <img  src={"http://localhost:4000/uploads/"+photo} alt=" " />
+              <img  src={"https://airbnb-v20y.onrender.com/uploads/"+photo} alt=" " />
               </div>
             ))} 
   
@@ -33,19 +33,19 @@ export default function PlaceGallery({place}){
             <div>
                {place.photos?.[0]&&(
                 <div className="">
-                <img  onClick={()=> setShowAllPhotos(true)} className=" aspect-square cursor-pointer object-cover" src={"http://localhost:4000/uploads/"+place.photos?.[0]}></img>
+                <img  onClick={()=> setShowAllPhotos(true)} className=" aspect-square cursor-pointer object-cover" src={"https://airbnb-v20y.onrender.com/uploads/"+place.photos?.[0]}></img>
                 </div>
                )}
             </div>
             <div className="grid  ">
             {place.photos?.[1]&&(
               <div className="">
-                <img onClick={()=> setShowAllPhotos(true)}  className="aspect-square  cursor-pointer object-cover" src={"http://localhost:4000/uploads/"+place.photos?.[1]}></img>
+                <img onClick={()=> setShowAllPhotos(true)}  className="aspect-square  cursor-pointer object-cover" src={"https://airbnb-v20y.onrender.com/uploads/"+place.photos?.[1]}></img>
                 </div>
                )}
                <div className=" overflow-hidden">
                {place.photos?.[2]&&(
-               <img onClick={()=> setShowAllPhotos(true)}  className="aspect-square  cursor-pointer object-cover relative top-2 " src={"http://localhost:4000/uploads/"+place.photos?.[2]}></img>
+               <img onClick={()=> setShowAllPhotos(true)}  className="aspect-square  cursor-pointer object-cover relative top-2 " src={"https://airbnb-v20y.onrender.com/uploads/"+place.photos?.[2]}></img>
                )}
                </div>
             </div>

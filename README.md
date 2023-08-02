@@ -20,7 +20,7 @@ The Booking App includes the following features:
 ## API-Link: https://airbnb-v20y.onrender.com/
 
 
-
-note:uploding images is not working 
-note:for test login you can try: email:test@gmail.com
+## Note
+- **uploding images is not working 
+- **test login you can try: email:test@gmail.com
                                  password:1234

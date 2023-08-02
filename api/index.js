@@ -66,28 +66,6 @@ app.post('/register',async (req,res)=>{
 })
 
 
-// app.post('/login',async (req,res)=>{
-//     const {email,password} =req.body;
-//      const userDoc= await User.findOne({email});
-//     if(userDoc){
-//         const passOk=bcrypt.compareSync(password,userDoc.password)
-//         if(passOk){
-
-//             jwt.sign({email:userDoc.email,id:userDoc._id},jwtSecret,{},(err,token)=>{
-//              if(err) throw err;
-//              res.cookie('token',token).json(userDoc)
-//             })
-            
-//         }
-//         else{
-//             res.status(422).json("pass not ok ")
-//         }
-//     }
-//     else{
-//         res.json('user not found');
-//     }
-   
-// })
 
 app.post('/login', async (req, res) => {
     try {
@@ -104,7 +82,7 @@ app.post('/login', async (req, res) => {
             {},
             (err, token) => {
               if (err) {
-                throw err; // Throw an error to be caught by the catch block
+                throw err; 
               }
               res.cookie('token', token, { sameSite: 'none', secure: true }).json(userDoc);
             }
@@ -116,7 +94,7 @@ app.post('/login', async (req, res) => {
         res.json('user not found');
       }
     } catch (error) {
-      // Handle the error here
+     
       console.error("Error occurred during login:", error);
       res.status(500).json("An error occurred during login.");
     }
@@ -251,25 +229,35 @@ app.post('/bookings',async (req,res)=>{
 })
 
 
-app.get('/bookings',async (req,res)=>{
-   try {
-      const token =req.cookies.token;
-      if(!token){
-        return res.status(401).json({error:'Unauthorized :Missing JWT'});
-      }
+// app.get('/bookings',async (req,res)=>{
+//    try {
+//       const token =req.cookies.token;
+//       if(!token){
+//         return res.status(401).json({error:'Unauthorized :Missing JWT'});
+//       }
 
-    const userData=await getUseDataFromReq(req);
-    if(!useData || !userData.id){
-        return res.status(401).json({error:'Unauthorized:Invalid Jwt'})
-    }
-   res.json(await Booking.find({user:userData.id}).populate('place'));
+//     const userData=await getUseDataFromReq(req);
+//     if(!useData || !userData.id){
+//         return res.status(401).json({error:'Unauthorized:Invalid Jwt'})
+//     }
+//    res.json(await Booking.find({user:userData.id}).populate('place'));
     
-   } catch (error) {
-    res.json(error);
-   }
+//    } catch (error) {
+//     res.json(error);
+//    }
    
-})
+// })
 
+app.get('/bookings',async (req,res)=>{
+    try {
+     const userData=await getUseDataFromReq(req);
+    res.json(await Booking.find({user:userData.id}).populate('place'));
+     
+    } catch (error) {
+     res.json(error);
+    }
+    
+ })
 // app.get('/bookings', async (req, res) => {
 //     try {
 //       const token = req.cookies.token;

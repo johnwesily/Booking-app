@@ -22,3 +22,5 @@ The Booking App includes the following features:
 
 
 note:uploding images is not working 
+note:for test login you can try: email:test@gmail.com
+                                 password:1234

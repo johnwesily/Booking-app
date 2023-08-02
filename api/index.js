@@ -66,28 +66,62 @@ app.post('/register',async (req,res)=>{
 })
 
 
-app.post('/login',async (req,res)=>{
-    const {email,password} =req.body;
-     const userDoc= await User.findOne({email});
-    if(userDoc){
-        const passOk=bcrypt.compareSync(password,userDoc.password)
-        if(passOk){
+// app.post('/login',async (req,res)=>{
+//     const {email,password} =req.body;
+//      const userDoc= await User.findOne({email});
+//     if(userDoc){
+//         const passOk=bcrypt.compareSync(password,userDoc.password)
+//         if(passOk){
 
-            jwt.sign({email:userDoc.email,id:userDoc._id},jwtSecret,{},(err,token)=>{
-             if(err) throw err;
-             res.cookie('token',token).json(userDoc)
-            })
+//             jwt.sign({email:userDoc.email,id:userDoc._id},jwtSecret,{},(err,token)=>{
+//              if(err) throw err;
+//              res.cookie('token',token).json(userDoc)
+//             })
             
-        }
-        else{
-            res.status(422).json("pass not ok ")
-        }
-    }
-    else{
-        res.json('user not found');
-    }
+//         }
+//         else{
+//             res.status(422).json("pass not ok ")
+//         }
+//     }
+//     else{
+//         res.json('user not found');
+//     }
    
-})
+// })
+
+app.post('/login', async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      const userDoc = await User.findOne({ email });
+  
+      if (userDoc) {
+        const passOk = bcrypt.compareSync(password, userDoc.password);
+  
+        if (passOk) {
+          jwt.sign(
+            { email: userDoc.email, id: userDoc._id },
+            jwtSecret,
+            {},
+            (err, token) => {
+              if (err) {
+                throw err; // Throw an error to be caught by the catch block
+              }
+              res.cookie('token', token).json(userDoc);
+            }
+          );
+        } else {
+          res.status(422).json("pass not ok");
+        }
+      } else {
+        res.json('user not found');
+      }
+    } catch (error) {
+      // Handle the error here
+      console.error("Error occurred during login:", error);
+      res.status(500).json("An error occurred during login.");
+    }
+  });
+  
 
 
 app.get('/profile',(req,res)=>{

@@ -106,7 +106,7 @@ app.post('/login', async (req, res) => {
               if (err) {
                 throw err; // Throw an error to be caught by the catch block
               }
-              res.cookie('token', token).json(userDoc);
+              res.cookie('token', token, { sameSite: 'none', secure: true }).json(userDoc);
             }
           );
         } else {

@@ -229,24 +229,6 @@ app.post('/bookings',async (req,res)=>{
 })
 
 
-// app.get('/bookings',async (req,res)=>{
-//    try {
-//       const token =req.cookies.token;
-//       if(!token){
-//         return res.status(401).json({error:'Unauthorized :Missing JWT'});
-//       }
-
-//     const userData=await getUseDataFromReq(req);
-//     if(!useData || !userData.id){
-//         return res.status(401).json({error:'Unauthorized:Invalid Jwt'})
-//     }
-//    res.json(await Booking.find({user:userData.id}).populate('place'));
-    
-//    } catch (error) {
-//     res.json(error);
-//    }
-   
-// })
 
 app.get('/bookings',async (req,res)=>{
     try {
@@ -258,24 +240,7 @@ app.get('/bookings',async (req,res)=>{
     }
     
  })
-// app.get('/bookings', async (req, res) => {
-//     try {
-//       const token = req.cookies.token;
-//       if (!token) {
-//         return res.status(401).json({ error: 'Unauthorized: Missing JWT' });
-//       }
-  
-//       const userData = await verifyJWT(token);
-//       if (!userData || !userData.id) {
-//         return res.status(401).json({ error: 'Unauthorized: Invalid JWT' });
-//       }
-  
-//       const bookings = await Booking.find({ user: userData.id }).populate('place');
-//       res.json(bookings);
-//     } catch (error) {
-//       res.status(500).json({ error: 'Internal Server Error' });
-//     }
-//   });
+
   
 
 
